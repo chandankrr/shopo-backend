@@ -12,7 +12,7 @@ module.exports = (err, req, res, next) => {
 
   // duplicate key error
   if (err.code === 11000) {
-    const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
+    const message = `Duplicate key ${Object.keys(err.keyValue)} entered`;
     err = new ErrorHandler(message, 400);
   }
 
