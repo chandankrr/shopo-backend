@@ -4,6 +4,7 @@ const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const router = express.Router();
 const Product = require('../model/product');
 const Shop = require('../model/shop');
+const Order = require('../model/order');
 const { upload } = require('../multer');
 const ErrorHandler = require('../utils/ErrorHandler');
 const fs = require('fs');
