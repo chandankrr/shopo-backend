@@ -4,7 +4,6 @@ const router = express.Router();
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const sendMail = require('../utils/sendMail');
-const sendToken = require('../utils/jwtToken');
 const Shop = require('../model/shop');
 const { isAuthenticated, isSeller, isAdmin } = require('../middleware/auth');
 const { upload } = require('../multer');
