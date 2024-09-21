@@ -4,16 +4,27 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://shopo-chandankr.vercel.app",
+    origin: [
+      "https://shopo-chandankr.vercel.app",
+      "https://shopo-phi.vercel.app",
+      "https://shopo-git-main-chandankr.vercel.app/",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
-app.use("/", express.static("uploads"));
+app.use("/", express.static(path.join(__dirname, "./uploads")));
+
+app.use("/test", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // config
@@ -45,12 +56,6 @@ app.use("/api/v2/event", event);
 app.use("/api/v2/coupon", coupon);
 app.use("/api/v2/payment", payment);
 app.use("/api/v2/withdraw", withdraw);
-
-// Test route
-app.get("/test", (req, res) => {
-  console.log("Test route hit");
-  res.status(200).json({ message: "Backend is working!" });
-});
 
 // it's for ErrorHandling
 app.use(ErrorHandler);
